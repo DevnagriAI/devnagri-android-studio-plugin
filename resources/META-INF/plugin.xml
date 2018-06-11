@@ -1,0 +1,97 @@
+<idea-plugin version="2">
+    <id>com.phraseapp.androidstudio</id>
+    <name>Devnagri</name>
+    <version>3.5.1</version>
+    <vendor email="support@phraseapp.com" url="https://www.phraseapp.com">Devnagri</vendor>
+
+    <description><![CDATA[
+      Devnagri helps you manage Translations in your Android Studio projects.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Version 3.5.1<br/>
+      <em>- List more than 25 projects and locales</em><br/>
+      Version 3.4<br/>
+      <em>- optimize initialization of the phrase app plugin. Region codes are now correctly handled.</em><br/>
+      Version 3.3<br/>
+      <em>- fixes a problem with older java versions</em><br/>
+      Version 3.2<br/>
+      <em>- fixes a problem with older version of the PhraseApp Client</em><br/>
+      Version 3.1<br/>
+      <em>- internal improvements</em><br/>
+      Version 3.0<br/>
+      <em>- major redesign of UI and internals</em><br/>
+      Version 2.3<br/>
+      <em>- supports CLI yml config</em><br/>
+      Version 2.2<br/>
+      <em>- improves performance, adds more detailed error handling</em><br/>
+      Version 2.1<br/>
+      <em>- fixes a problem when Android-style locale-culture codes (e.g. "pl-rPL") are used</em><br/>
+      Version 2.0<br/>
+      <em>- support for PhraseApp API v2</em><br/>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="131"/>
+
+
+    <depends>com.intellij.modules.lang</depends>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable groupId="tools" instance="com.devnagri.androidstudio.ui.MyPhraseAppConfigurable"></projectConfigurable>
+        <toolWindow id="Devnagri" anchor="right" icon="/icons/phrase.png"
+                    factoryClass="com.devnagri.androidstudio.ui.PhraseAppToolWindow"></toolWindow>
+    </extensions>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <group id="PhraseAppToolGroup" popup="true" text="Devnagri" icon="/icons/phrase.png"
+               class="com.intellij.openapi.actionSystem.DefaultActionGroup">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </group>
+
+        <action id="com.phraseapp.androidstudio.PhraseAppPull"
+                class="com.devnagri.androidstudio.actions.PullAction" text="Pull"
+                description="Pull locales from Devnagri">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl K"/>
+            <add-to-group group-id="PhraseAppToolGroup" anchor="first"/>
+        </action>
+
+        <action id="com.phraseapp.androidstudio.PhraseAppPush" class="com.devnagri.androidstudio.actions.PushAction"
+                text="Push" description="Push locales to Devnagri">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl J"/>
+            <add-to-group group-id="PhraseAppToolGroup" />
+        </action>
+
+        <action id="PhraseAppConfig" class="com.devnagri.androidstudio.actions.ConfigAction" text="Create Setting">
+            <add-to-group group-id="PhraseAppToolGroup" anchor="last"/>
+        </action>
+
+        <action id="com.phraseapp.androidstudio.PhraseAppWeb" class="com.devnagri.androidstudio.actions.WebAction"
+                text="Open Translation Center"
+                description="Open the Devnagri Translation Center in your browser">
+            <add-to-group group-id="PhraseAppToolGroup" anchor="last"/>
+        </action>
+
+        <action id="com.phraseapp.androidstudio.PhraseAppHelp" class="com.devnagri.androidstudio.actions.HelpAction"
+                text="Help"
+                description="Open the Devnagri Help">
+            <add-to-group group-id="PhraseAppToolGroup" anchor="last"/>
+        </action>
+
+        <action id="com.phraseapp.androidstudio.PhraseAppUpload" class="com.devnagri.androidstudio.actions.UploadAction"
+                text="Upload Locale" icon="/icons/phrase.png"
+                description="Upload Locale to Devnagri">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
